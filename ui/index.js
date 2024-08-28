@@ -1,3 +1,9 @@
-const platform = globalThis.window ? 'web' : 'console';
+import Controller from "./../src/shared/controller.js";
 
-await import(`./../src/platforms/${platform}/view.js`);
+const platform = globalThis.window ? "web" : "console";
+
+const { default: View } = await import(
+  `./../src/platforms/${platform}/view.js`
+);
+
+Controller.init({ view: new View() });
